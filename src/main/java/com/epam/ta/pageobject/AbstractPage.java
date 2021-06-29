@@ -19,30 +19,30 @@ public abstract class AbstractPage {
     }
 
     protected void sendText(WebElement element, String text) {
-        MyLogger.debug("Highlighting web-element" + element.toString().split("->")[1] + " and sending text");
+        MyLogger.debug("Sending text to web-element" + element.toString().split("->")[1]);
         highlightElement(element);
         element.sendKeys(text);
     }
 
     protected void clickOnElement(WebElement element) {
-        MyLogger.debug("Highlighting web-element" + element.toString().split("->")[1] + " and clicking on it");
+        MyLogger.debug("Clicking on web-element" + element.toString().split("->")[1]);
         highlightElement(element);
         element.click();
     }
 
     protected void dragAndDropElement(WebElement element, WebElement target) {
-        MyLogger.debug("Highlighting web-element" + element.toString().split("->")[1] + " and drag&dropping it on " + target.toString().split("->")[1]);
+        MyLogger.debug("Dragging element" + element.toString().split("->")[1] + " and dropping it on " + target.toString().split("->")[1]);
         highlightElement(element);
         new Actions(driver).dragAndDrop(element, target).build().perform();
     }
 
     protected void openContextMenuAndClick(WebElement element, WebElement target) {
         Waiter.waitForElementToBeClickable(driver, element);
-        MyLogger.debug("Highlighting web-element" + element.toString().split("->")[1] + " and opening context menu");
+        MyLogger.debug("Opening context menu on element " + element.toString().split("->")[1]);
         highlightElement(element);
         new Actions(driver).contextClick(element).build().perform();
         Waiter.waitForElementToBeClickable(driver, target);
-        MyLogger.debug("Clicking on Add to Album menu option. And highlighting web-element: " + target.toString().split("->")[1]);
+        MyLogger.debug("Clicking on Add to Album menu option web-element" + target.toString().split("->")[1]);
         highlightElement(element);
         new Actions(driver).click(target).build().perform();
     }

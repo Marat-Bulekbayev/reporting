@@ -19,6 +19,9 @@ public class YandexDiskFilesPage extends AbstractPage {
     @FindBy(xpath = "//div[@class='listing-item__icon-wrapper js-prevent-mouse-selection']")
     List<WebElement> files;
 
+    @FindBy(xpath = "//div[@title='Избранные']")
+    WebElement favoritesAlbum;
+
     public YandexDiskFilesPage() {
         super();
         PageFactory.initElements(this.driver, this);
@@ -35,8 +38,13 @@ public class YandexDiskFilesPage extends AbstractPage {
         return this;
     }
 
-    public YandexDiskFilesPage moveFileToFavoritesAlbum() {
+    public YandexDiskFilesPage moveFileToAlbum() {
         openContextMenuAndClick(files.get(0), moveToAlbum);
         return this;
+    }
+
+    public boolean isFavoritesAlbumDisplayed() {
+        highlightElement(favoritesAlbum);
+        return favoritesAlbum.isDisplayed();
     }
 }

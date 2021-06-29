@@ -1,6 +1,6 @@
 package com.epam.ta.util;
 
-import org.openqa.selenium.By;
+import com.epam.ta.reporting.MyLogger;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -23,6 +23,10 @@ public class Waiter {
                 .pollingEvery(Duration.ofSeconds(MIN_POLLING_TIME))
                 .ignoring(NoSuchElementException.class);
 
-        wait.until(ExpectedConditions.elementToBeClickable(element));
+        try {
+            wait.until(ExpectedConditions.elementToBeClickable(element));
+        } catch (Exception e) {
+            MyLogger.error(e.getLocalizedMessage(), e);
+        }
     }
 }
